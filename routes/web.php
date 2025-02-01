@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get("/", [Controller::class, "index"]);
+Route::post("/laporan", [ReportController::class, "store"])->middleware("guest");

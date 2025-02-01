@@ -12,6 +12,6 @@ class Controller extends BaseController
 
     public function index()
     {
-        return view("core.template");
+        return view("index");
     }
 }

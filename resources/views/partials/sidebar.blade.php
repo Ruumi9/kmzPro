@@ -12,11 +12,20 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Laporan</span></a>
-    </li>
+    @guest
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Laporan</span></a>
+        </li>
+    @endguest
+    @auth
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Laporan</span></a>
+        </li>
+    @endauth
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
