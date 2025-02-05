@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum("spv", ["SPV 1", "SPV 2", "SPV 3"]);
             $table->enum("shift", ["Shift 1", "Shift 2", "Shift 3"]);
             $table->enum("work_section", ["Shift", "Non Shift", "Utility"]);
+            $table->text("report");
             $table->enum("job_by", ["Shift Activity", "Work Order"]);
             $table->text("area");
             $table->text("image");
