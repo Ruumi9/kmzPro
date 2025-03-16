@@ -12,39 +12,40 @@ class ReportController extends Controller
     //
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->gambar->extension());
+        $request->validate([
+            "spv" => "required",
+            "shift" => "required",
+            "laporan" => "required",
+            "job_by" => "required",
+            "gambar" => "required",
+            "remark" => "required",
+            "sparepart" => "required"
+        ]);
+
+
+        $destinationPath = "upload";
+        $file = $request->file("gambar");
         $spv = $request->spv;
         $shift = $request->shift;
         $bagian = $request->bagian;
-        // if ($shift == "Shift 1" && $bagian == "Shift") {
-        //     $laporan = $request->laporan;
-        //     $laporanNonShift = "";
-        //     $laporanUtility = "";
-        // } elseif ($shift == "Shift 1" && $bagian == "Non Shift") {
-        //     $laporanNonShift = $request->laporan;
-        //     $laporan = "";
-        //     $laporanUtility = "";
-        // } elseif ($shift == "Shift 1" && $bagian == "Utility") {
-        //     $laporanUtility = $request->laporan;
-        //     $laporan = "";
-        //     $laporanUtility = "";
-        // } else {
-        //     $bagian = "Shift";
-        //     $laporan = $request->laporan;
-        //     $laporanUtility = "";
-        //     $laporanNonShift = "";
-        // }
         $laporan = $request->laporan;
         $jobBy = $request->job_by;
         $area = $request->area;
         $gambar = $request->gambar->getClientOriginalName();
         $remark = $request->remark;
+        $extensi = $request->gambar->extension();
         if ($remark == "Done") {
             $pending = "";
         } else {
             $pending = $request->pending;
         }
         $sparepart = $request->sparepart;
+        if ($request->file("gambar")->isValid()) {
+            if ($extensi != "jpg" && $extensi != "png") {
+                return redirect("/");
+            }
+        }
         $report = ModelsReport::create([
             "date" => Carbon::now(),
             "spv" => $spv,
